@@ -85,11 +85,11 @@
 			<div class="col-md-4 col-md-offset-4">
 				<c:if test="${userBean.status==1 }">
 					<a type="button" class="btn btn-block btn-info"
-						href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&id=${userBean.id}&status=0&flag=0">冻结</a>
+						href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&id=${userBean.id}&status=0&flag=1">冻结</a>
 				</c:if>
 				<c:if test="${userBean.status==0 }">
 					<a type="button" class="btn btn-block btn-info"
-						href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&id=${userBean.id}&status=1&flag=0">解冻</a>
+						href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&id=${userBean.id}&status=1&flag=1">解冻</a>
 				</c:if>
 			</div>
 		</div>

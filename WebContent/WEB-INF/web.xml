@@ -79,8 +79,6 @@
     <servlet-name>userServlet</servlet-name>
     <url-pattern>/admin/frontUser/userServlet</url-pattern>
   </servlet-mapping>
-  
-  
   <servlet>
     <description></description>
     <display-name>UserServlet</display-name>
@@ -90,5 +88,15 @@
   <servlet-mapping>
     <servlet-name>UserServlet</servlet-name>
     <url-pattern>/admin/front/user/userServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserOrderServlet</display-name>
+    <servlet-name>UserOrderServlet</servlet-name>
+    <servlet-class>com.oracle.jsp.servlet.admin.UserOrderServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserOrderServlet</servlet-name>
+    <url-pattern>/admin/frontUser/userOrderServlet</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -16,6 +16,17 @@ public class UserBean {
 	public UserBean(){
 		
 	}
+	public UserBean(String username ,String password,String salt,String nickname,String truename,int sex,String pic,int status,String createDate){
+		this.setUsername(username);
+		this.setPassword(password);
+		this.setSalt(salt);
+		this.setStatus(status);
+		this.setSex(sex);
+		this.setNickname(nickname);
+		this.setTruename(truename);
+		this.setPic(pic);
+		this.setCreateDate(createDate);
+	}
 	public int getId() {
 		return id;
 	}

@@ -24,7 +24,7 @@
 			</div>
 			<div class="col-md-6">
 				<form class="navbar-form navbar-left" role="search"
-					action="${pageContext.request.contextPath}/admin/userOrderServlet?method=list"
+					action="${pageContext.request.contextPath}/admin/frontUser/userOrderServlet?method=list"
 					method="post">
 					<div class="form-group">
 						<input type="text" class="form-control" placeholder="用户账号"
@@ -54,7 +54,7 @@
 							<tr>
 								<td>${item.id }</td>
 								<td><a
-									href="${pageContext.request.contextPath}/admin/userOrderServlet?method=list&orderId=${item.id }&search=${userBean.username }">${item.code }</a></td>
+									href="${pageContext.request.contextPath}/admin/frontUser/userOrderServlet?method=list&orderId=${item.id }&search=${userBean.username }">${item.code }</a></td>
 								<td>${item.original_price }</td>
 								<td>${item.price }</td>
 								<td>${item.addressBean.name }</td>
@@ -67,7 +67,7 @@
 										test="${item.status==3 }">已收货</c:if></td>
 								<td>${item.create_date }</td>
 								<td><a
-									href="${pageContext.request.contextPath}/admin/userOrderServlet?method=delete&orderId=${item.id }">删除</a></td>
+									href="${pageContext.request.contextPath}/admin/frontUser/userOrderServlet?method=delete&username=${item.userBean.username }&orderId=${item.id }">删除</a></td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -78,6 +78,9 @@
 			<div class="col-md-12">
 				<c:if test="${param.status.equals('0')}">
 					<div class="alert alert-info" role="alert">没有该用户</div>
+				</c:if>
+				<c:if test="${param.status.equals('1')}">
+					<div class="alert alert-info" role="alert">删除成功</div>
 				</c:if>
 			</div>
 		</div>

@@ -46,11 +46,11 @@ public class userServlet extends HttpServlet {
 		int status = StringUtil.StringToInt(req.getParameter("status"));
 //		System.out.println(status);
 		int flag1= StringUtil.StringToInt(req.getParameter("flag"));//flag值为0得话代表从冻结账号页面传过来，需要传回冻结账号页面，否则需要跳转到list
-		System.out.println(flag1);
+//		System.out.println("flag1="+flag1);
 		UserDao userDao = new UserDao();
 		boolean flag = userDao.updateStatus(status,id);
 		
-		if(flag1==0)
+		if(flag1==1)
 		{
 			if(flag==true){
 				req.getRequestDispatcher("blockUser.jsp?status=1").forward(req, resp);
@@ -62,12 +62,12 @@ public class userServlet extends HttpServlet {
 		else{
 			//如果是从查询页面跳转过来的，那么他会先重定向到list
 			if(flag==true){
-				resp.sendRedirect("frontUser/userServlet?method=list&status=1");
+				resp.sendRedirect(req.getContextPath()+"/admin/frontUser/userServlet?method=list&status=1");
 //				req.getRequestDispatcher("listUsers.jsp?status=1").forward(req, resp);
 			}
 			else{
 //				req.getRequestDispatcher("listUsers.jsp?status=0").forward(req, resp);
-				resp.sendRedirect("frontUser/userServlet?method=list&status=0");
+				resp.sendRedirect(req.getContextPath()+"/admin/frontUser/userServlet?method=list&status=0");
 
 			}
 		}
@@ -93,7 +93,7 @@ public class userServlet extends HttpServlet {
 		 UserDao userDao = new UserDao();
 		 List<UserBean> userBeans = userDao.list();
 		req.setAttribute("userBeans", userBeans);
-		System.out.println(status);
+//		System.out.println("status="+status);
 		if(status!=null){
 			req.getRequestDispatcher("listUsers.jsp?status="+status).forward(req, resp);
 		}else{

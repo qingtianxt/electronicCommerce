@@ -58,20 +58,21 @@
 									test="${item.status==0 }">冻结</c:if></td>
 							<td><c:if test="${item.status==1 }">
 									<a
-										href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&status=0&id=${item.id }">冻结</a>
+										href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&status=0&id=${item.id }&flag=0">冻结</a>
 								</c:if> <c:if test="${item.status==0 }">
 									<a
-										href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&status=1&id=${item.id }">解冻</a>
+										href="${pageContext.request.contextPath}/admin/frontUser/userServlet?method=update&status=1&id=${item.id }&flag=0">解冻</a>
 								</c:if></td>
 						</tr>
 					</c:forEach>
-					<c:if test="${param.status.equals('1')}">
+					
+				</table>
+				<c:if test="${param.status.equals('1')}">
 					<div class="alert alert-info" role="alert">操作成功</div>
 				</c:if>
 				<c:if test="${param.status.equals('2')}">
 					<div class="alert alert-info" role="alert">操作失败</div>
 				</c:if>
-				</table>
 			</div>
 			<div class=" col-md-1"></div>
 		</div>

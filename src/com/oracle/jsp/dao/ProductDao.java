@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.oracle.jsp.bean.ProductBean;
+import com.oracle.jsp.bean.ProductTypeBean;
 import com.oracle.jsp.util.DBUtil;
 
 /**
@@ -174,6 +175,45 @@ public class ProductDao {
 				int id = rs.getInt("id");
 				String name = rs.getString("name");
 				productBean = new ProductBean(id, name);
+				list.add(productBean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, state, conn);
+		}
+		return list;
+	}
+
+	/**
+	 * 分类列表，搜索出所选择分类及其所有子类的所有的商品列表。
+	 * 
+	 * @param parent_id
+	 * @return
+	 */
+	public List<ProductBean> getListById(int type_id) {
+		List<ProductBean> list = new ArrayList<>();
+		ProductTypeDao productTypeDao = new ProductTypeDao();
+		List<ProductTypeBean> typeList = productTypeDao.getTypeBeans(type_id);
+		for (ProductTypeBean type : typeList) {
+			List list2 = getListById(type.getId());
+			list.addAll(list2);
+		}
+		Connection conn = DBUtil.getConn();
+		Statement state = null;
+		ResultSet rs = null;
+		String sql = "select * from product whereproduct_type_id='" + type_id + "'";
+		try {
+			state = conn.createStatement();
+			rs = state.executeQuery(sql);
+			ProductBean productBean = null;
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				float price = rs.getFloat("price");
+				int number = rs.getInt("number");
+				String pic = rs.getString("pic");
+				productBean = new ProductBean(id, name, price, number, pic);
 				list.add(productBean);
 			}
 		} catch (SQLException e) {

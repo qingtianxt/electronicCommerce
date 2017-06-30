@@ -139,17 +139,17 @@ public class ProductServlet extends HttpServlet {
 	private void add(HttpServletRequest req, HttpServletResponse resp) throws UnsupportedEncodingException {
 		req.setCharacterEncoding("utf-8");
 		boolean status = true;
-		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
-		ServletFileUpload upload = new ServletFileUpload(diskFileItemFactory);
+		DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();//创建fileitem 对象的工厂
+		ServletFileUpload upload = new ServletFileUpload(diskFileItemFactory);//负责处理上传文件的文件数据，并将表单中的每一个对象封装成fileitem对象
 		try {
-			List<FileItem> fileItems = upload.parseRequest(req);
+			List<FileItem> fileItems = upload.parseRequest(req);//调用upload.parseRequest方法解析request对象，得到一个保存所有内容的list对象
 			ProductBean productBean = new ProductBean();
 			for (FileItem item : fileItems) {
 				item.getString("utf-8");
 //				System.out.println(item.toString());
 				if (item.isFormField()) {
 					// 处理表单内容
-					processFormField(item, productBean);
+					processFormField(item, productBean);//如果fileitem保存的是普通输入项的数据
 				} else {
 					// 处理上传文件（图片）
 //					System.out.println("tupian");
@@ -190,23 +190,27 @@ public class ProductServlet extends HttpServlet {
 	private void processUploadFile(FileItem item,
 			ProductBean productBean) {
 			String filename = item.getName();
-			int index = filename.lastIndexOf(".");
-			filename = filename.substring(index+1, filename.length());
+			//获得文件上传字段的文件名
+			int index = filename.lastIndexOf(".");//找到.的下标
+			filename = filename.substring(index+1, filename.length());//获得。之后的后缀名，也就是文件的格式
 			String picPath = Constants.PIC_SHOW_PATH
 			+DateUtil.getDateStr()+"/"+DateUtil.getTimeStr()+"."+ filename;
-			long fileSize = item.getSize();
+			//展示的路径
+			long fileSize = item.getSize();//返回上传文件的大小
 			if("".equals(filename)&&fileSize == 0){
-			return;
+				return;
 			}
 			//新建文件夹，日期为文件夹名，时间为文件名
 			File file = new File(Constants.PIC_UPLOAD_PATH+DateUtil.getDateStr());
 			System.out.println(Constants.PIC_UPLOAD_PATH+DateUtil.getDateStr());
+			
 			file.mkdirs();
 			File uploadFile = new File(Constants.PIC_UPLOAD_PATH
 			+DateUtil.getDateStr()+"/"+DateUtil.getTimeStr()+"."+ filename);
 			try {
-			item.write(uploadFile);
-			productBean.setPic(picPath);
+				item.write(uploadFile);//将文件流写到指定的文件里面，这里的是传的是图片流
+				
+				productBean.setPic(picPath);
 			} catch (Exception e) {
 			e.printStackTrace();
 			}
@@ -223,6 +227,7 @@ public class ProductServlet extends HttpServlet {
 	private void processFormField(FileItem item, ProductBean productBean)
 			throws UnsupportedEncodingException {
 		String name = item.getFieldName();
+		//获得表单标签中的name属性的值
 		String value = new String(item.getString("utf-8"));
 		switch (name) {
 		case "id":

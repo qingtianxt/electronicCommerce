@@ -77,7 +77,7 @@
 		<div class="row-fluid">
 			<div class="col-md-10 col-md-offset-2">
 				<button class="btn"
-					onclick="window.location.href='${pageContext.request.contextPath}/admin/userOrderServlet?method=delete&orderId=${orderBean.id }'">删除</button>
+					onclick="window.location.href='${pageContext.request.contextPath}/admin/frontUser/userOrderServlet?method=delete&orderId=${orderBean.id }'">删除</button>
 			</div>
 		</div>
 	</div>

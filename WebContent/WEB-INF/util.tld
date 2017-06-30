@@ -5,13 +5,23 @@
 	<display-name>util</display-name>
 	<tlib-version>1.0</tlib-version>
 	<short-name>util</short-name>
-	<uri>http://localhost:8080//electronicCommerce/util</uri><!--  -用于页面调用-->
+	<uri>http://localhost:8080//electronicCommerce/util</uri><!-- -用于页面调用 -->
 	<tag>
 		<name>page</name><!-- 自定义属性 -->
 		<tag-class>com.oracle.jsp.tag.PageTag</tag-class>
 		<body-content>empty</body-content><!-- 允许为空 -->
 		<attribute>
 			<name>pagingBean</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>type</name>
+		<tag-class>com.oracle.jsp.tag.TypeTag</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<name>path</name>
 			<required>true</required>
 			<rtexprvalue>true</rtexprvalue>
 		</attribute>

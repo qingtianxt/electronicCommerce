@@ -135,22 +135,26 @@ public class UserDao {
 		Statement state = null;
 		ResultSet rs = null;
 
-		String sql = "select * from user where username="+username;
+		String sql = "select * from user";
+//		System.out.println(sql);
 		try {
 			state = conn.createStatement();
 			rs = state.executeQuery(sql);
 			
-			if(rs.next()){
-				userBean.setId(rs.getInt("id"));
-				userBean.setUsername(rs.getString("username"));
-				userBean.setPassword(rs.getString("password"));
-				userBean.setSalt(rs.getString("salt"));
-				userBean.setNickname(rs.getString("nickname"));
-				userBean.setTruename(rs.getString("truename"));
-				userBean.setSex(rs.getInt("sex"));
-				userBean.setPic(rs.getString("pic"));
-				userBean.setStatus(rs.getInt("status"));
-				userBean.setCreateDate(rs.getString("create_date"));
+			while(rs.next()){
+				if(rs.getString("username").equals(username))
+				{
+					userBean.setId(rs.getInt("id"));
+					userBean.setUsername(rs.getString("username"));
+					userBean.setPassword(rs.getString("password"));
+					userBean.setSalt(rs.getString("salt"));
+					userBean.setNickname(rs.getString("nickname"));
+					userBean.setTruename(rs.getString("truename"));
+					userBean.setSex(rs.getInt("sex"));
+					userBean.setPic(rs.getString("pic"));
+					userBean.setStatus(rs.getInt("status"));
+					userBean.setCreateDate(rs.getString("create_date"));
+				}
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -163,7 +167,7 @@ public class UserDao {
 		Statement state =null;
 		boolean flag=true;
 		String sql = "update user set status = "+status+" where id="+id;
-		System.out.println(sql);
+//		System.out.println(sql);
 		int i=0;
 		try {
 			state = conn.createStatement();
