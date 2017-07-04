@@ -113,8 +113,10 @@ public class ProductOptionDao {
 				int id = rs.getInt("id");
 				int sort = rs.getInt("sort");
 				int productPropertyId = rs.getInt("product_type_property_id");
+				//将属性表中需要用的内容也放到这个对象中
 				ProductPropertyDao productPropertyDao = new ProductPropertyDao();
 				ProductPropertyBean productPropertyBean = productPropertyDao.getPropertyById(productPropertyId);
+				
 				String name = rs.getString("name");
 				String createDate = rs.getString("create_date");
 				productOptionBean = new ProductOptionBean(id, sort, productPropertyId, name, createDate);

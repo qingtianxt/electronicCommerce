@@ -192,6 +192,19 @@ href="${pageContext.request.contextPath}/admin/frontUser/blockUser.jsp">冻结�
 				<div> <a target="mainAction" href="${pageContext.request.contextPath}/admin/frontUser/userOrder.jsp">查询用户订单</a></div>
 			</div>
 		</div>
+		
+		<div class="menuParent">
+			<div class="ListTitlePanel">
+				<div class="ListTitle">
+					<strong>订单管理</strong>
+					<div class="leftbgbt2"> </div>
+				</div>
+			</div>
+			<div class="menuList">
+				<div> <a target="mainAction" href="${pageContext.request.contextPath}/admin/product/add.jsp">查询订单</a></div>
+				<div> <a target="mainAction" href="${pageContext.request.contextPath}/admin/frontUser/deleteOrder.jsp">删除订单</a></div>
+			</div>
+		</div>
 	</div>
 </div>
 <div style="text-align:center;">

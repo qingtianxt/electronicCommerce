@@ -6,7 +6,7 @@ public class ProductOptionBean {
 	private int sort;
 	private String createDate;
 	private int propertyId;
-	private ProductPropertyBean productPropertyBean;
+	private ProductPropertyBean productPropertyBean;//包含属性信息
 
 	// 构造方法
 	public ProductOptionBean(int sort, int productPropertyId, String name) {

@@ -99,4 +99,44 @@
     <servlet-name>UserOrderServlet</servlet-name>
     <url-pattern>/admin/frontUser/userOrderServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProductShowServlet</display-name>
+    <servlet-name>ProductShowServlet</servlet-name>
+    <servlet-class>com.oracle.jsp.servlet.front.ProductShowServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductShowServlet</servlet-name>
+    <url-pattern>/admin/front/productShow/productShowServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ShoppingServlet</display-name>
+    <servlet-name>ShoppingServlet</servlet-name>
+    <servlet-class>com.oracle.jsp.servlet.front.ShoppingServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ShoppingServlet</servlet-name>
+    <url-pattern>/admin/front/shopping/shoppingServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AddressServlet</display-name>
+    <servlet-name>AddressServlet</servlet-name>
+    <servlet-class>com.oracle.jsp.servlet.front.AddressServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddressServlet</servlet-name>
+    <url-pattern>/front/shopping/addressServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>wzw_userServlet</display-name>
+    <servlet-name>wzw_userServlet</servlet-name>
+    <servlet-class>wzw_user.wzw_userServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>wzw_userServlet</servlet-name>
+    <url-pattern>/admin/wzw_userinfo/wzw_userServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

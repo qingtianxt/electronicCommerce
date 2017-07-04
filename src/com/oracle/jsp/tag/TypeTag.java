@@ -41,7 +41,7 @@ public class TypeTag extends SimpleTagSupport {
 		sb.append("<li><a href='#' class='current'>Ê×Ò³</a></li>");
 		if (typeBeans0 != null) {
 			for (ProductTypeBean item : typeBeans0) {
-				sb.append("<li><a href='").append(path).append("/front/productShow/productShowServlet?method=sort&id=")
+				sb.append("<li><a href='").append(path).append("/admin/front/productShow/productShowServlet?method=sort&id=")
 						.append(item.getId()).append("'>").append(item.getName()).append("</a></li>");
 			}
 		}
@@ -62,7 +62,7 @@ public class TypeTag extends SimpleTagSupport {
 			for (ProductTypeBean item : typeBeans0) {
 				sb.append("<div class='item'>");
 				sb.append("<h3><span>¡¤</span><a href='").append(path)
-						.append("/front/productShow/productShowServlet?method=sort&id=").append(item.getId())
+						.append("/admin/front/productShow/productShowServlet?method=sort&id=").append(item.getId())
 						.append("'>").append(item.getName()).append("</a></h3>");
 				List<ProductTypeBean> childBeans = productTypeDao.getTypeBeans(item.getId());
 				if (!childBeans.isEmpty()) {
@@ -87,7 +87,7 @@ public class TypeTag extends SimpleTagSupport {
 			sb.append("<div class='subitem'>");
 			for (ProductTypeBean item : typeBeans1) {
 				sb.append("<dl class='fore'>");
-				sb.append("<dt><a href='").append(path).append("/front/productShow/productShowServlet?method=sort&id=")
+				sb.append("<dt><a href='").append(path).append("/admin/front/productShow/productShowServlet?method=sort&id=")
 						.append(item.getId()).append("'>").append(item.getName()).append("</a></dt>");
 				List<ProductTypeBean> childBeans = productTypeDao.getTypeBeans(item.getId());
 				if (!childBeans.isEmpty()) {
@@ -112,7 +112,7 @@ public class TypeTag extends SimpleTagSupport {
 			sb.append("<dd>");
 			for (ProductTypeBean item : typeBeans2) {
 				sb.append("<em>");
-				sb.append("<a href='").append(path).append("/front/productShow/productShowServlet?method=sort&id=")
+				sb.append("<a href='").append(path).append("/admin/front/productShow/productShowServlet?method=sort&id=")
 						.append(item.getId()).append("'>").append(item.getName()).append("</a>");
 				sb.append("</em>");
 			}

@@ -156,7 +156,7 @@ public class ProductTypeDao {
 	 * @param ProductTypeBean Ö»·â×°id,name,
 	 * @return
 	 */
-	public List<ProductTypeBean>getTypeBean(int parentId){
+	public List<ProductTypeBean>getTypeBeans(int parentId){
 		String sql ="select * from product_type where parent_id="+parentId;
 		List<ProductTypeBean>typeBeans = new ArrayList<>();
 		Connection conn =DBUtil.getConn();

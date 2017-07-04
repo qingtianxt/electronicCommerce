@@ -7,6 +7,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.oracle.jsp.bean.AdminBean;
 import com.oracle.jsp.bean.UserBean;
 import com.oracle.jsp.util.DBUtil;
 import com.oracle.jsp.util.MD5;
@@ -63,32 +64,7 @@ public class UserDao {
 		DBUtil.close(rs, state, conn);
 		return flag;
 	}
-	/**
-	 * 判断登录
-	 * @param username
-	 * @param password
-	 * @return
-	 */
-	public boolean judgelogin(String username, String password) {
-		boolean flag= false;
-		Connection conn = DBUtil.getConn();
-		Statement state = null;
-		ResultSet rs= null;
-		String sql = "select username,password,salt from user where username="+username;
-		try {
-			state = conn.createStatement();
-			rs = state.executeQuery(sql);
-			while(rs.next()){
-				if(rs.getString("password").equals(MD5.GetMD5Code(MD5.GetMD5Code(password)+rs.getString("salt")))){
-					flag= true;
-				}
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		DBUtil.close(rs, state, conn);
-		return flag;
-	}
+	
 	/**
 	 * 展示所有用户的信息
 	 * @return
@@ -180,6 +156,43 @@ public class UserDao {
 			flag=false;
 		}
 		return flag;
+	}
+	/**
+	 * 登录
+	 * @param username
+	 * @param password
+	 * @return
+	 */
+	public UserBean login(String username, String password) {
+		Connection conn = DBUtil.getConn();
+		UserBean userBean = null;
+		Statement state = null;
+		ResultSet rs = null;
+		try {
+			state = conn.createStatement();
+			rs = state.executeQuery("select id,username,password,salt,nickname,truename,sex,pic,status,create_date from user where username='" + username + "'");
+			if (rs.next()) {
+				// 如果有结果，是认为是通过验证了
+				if (rs.getString("password").equals(MD5.GetMD5Code(password + rs.getString("salt")))) {
+					// 跟注册和修改的时候加密过程是一样的
+					userBean = new UserBean();
+					userBean.setId(rs.getInt("id"));
+					userBean.setUsername(rs.getString("username"));
+					userBean.setPassword(rs.getString("password"));
+					userBean.setSalt(rs.getString("salt"));
+					userBean.setNickname(rs.getString("nickname"));
+					userBean.setTruename(rs.getString("truename"));
+					userBean.setSex(rs.getInt("sex"));
+					userBean.setPic(rs.getString("pic"));
+					userBean.setStatus(rs.getInt("status"));
+					userBean.setCreateDate(rs.getString("create_date"));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		DBUtil.close(rs, state, conn);
+		return userBean;
 	}
 
 }

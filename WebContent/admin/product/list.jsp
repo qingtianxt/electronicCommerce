@@ -13,7 +13,7 @@
 	href="${pageContext.request.contextPath}/static/bootstrap-3.3.5-dist/css/bootstrap-theme.min.css">
 <script
 	src="${pageContext.request.contextPath}/static/bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
-</head>
+
 </head>
 <body>
 	<div class="container">

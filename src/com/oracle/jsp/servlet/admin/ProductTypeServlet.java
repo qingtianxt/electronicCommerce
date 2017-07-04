@@ -102,7 +102,7 @@ public class ProductTypeServlet extends HttpServlet {
 	 */
 	private void toAdd(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		ProductTypeDao productTypeDao  =new ProductTypeDao();
-		List<ProductTypeBean> typeList = productTypeDao.getTypeBean(0);
+		List<ProductTypeBean> typeList = productTypeDao.getTypeBeans(0);
 		req.setAttribute("productTypeList", typeList);
 		req.getRequestDispatcher("add.jsp").forward(req, resp);
 	}

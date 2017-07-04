@@ -11,9 +11,10 @@ public class AddressBean {
 	private int user_id;
 	private int status;
 	private String create_date;
-	public AddressBean(){
-		
-	}
+	private String provincename;//省份名
+	private String cityname;//城市名
+	private String areaname;//地方名
+	
 	
 
 	public AddressBean(int id,String name,int province,int city,int region,String address,String cellphone,int user_id,int status,String create_date){
@@ -28,14 +29,41 @@ public class AddressBean {
 		this.setStatus(status);
 		this.setCreate_date(create_date);
 	}
-	@Override
-	public String toString() {
-		return "AddressBean [id=" + id + ", name=" + name + ", province=" + province + ", city=" + city + ", region="
-				+ region + ", address=" + address + ", cellphone=" + cellphone + ", user_id=" + user_id + ", status="
-				+ status + ", create_date=" + create_date + "]";
+	
+
+	public String getProvincename() {
+		return provincename;
 	}
 
 
+	public void setProvincename(String provincename) {
+		this.provincename = provincename;
+	}
+
+
+	public String getCityname() {
+		return cityname;
+	}
+
+
+	public void setCityname(String cityname) {
+		this.cityname = cityname;
+	}
+
+
+	public String getAreaname() {
+		return areaname;
+	}
+
+
+	public void setAreaname(String areaname) {
+		this.areaname = areaname;
+	}
+
+
+	public AddressBean(){
+		
+	}
 	public int getCity() {
 		return city;
 	}

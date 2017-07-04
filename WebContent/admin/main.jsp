@@ -15,7 +15,6 @@
 		<frame src="left.jsp">
 		<frame  name="mainAction">
 	</frameset>
-	
 </frameset>
 <!-- 使用frameset将页面分成三个页面， -->
-</html>
+</html>    

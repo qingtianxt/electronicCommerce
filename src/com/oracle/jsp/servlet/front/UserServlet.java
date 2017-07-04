@@ -53,11 +53,13 @@ public class UserServlet extends HttpServlet {
 		UserBean userBean =new UserBean();
 		String username = req.getParameter("account");
 		String password= req.getParameter("password");
+		password = MD5.GetMD5Code(password);
 		UserDao userDao = new UserDao();
-		boolean flag=userDao.judgelogin(username,password);
-		
-		if(flag==true){
-			System.out.println("登陆成功");
+		UserBean userbean=userDao.login(username,password);
+		req.getSession().setAttribute("userBean", userbean);
+		if(userbean!=null){
+			req.getRequestDispatcher("../productShow/list.jsp").forward(req, resp);
+//			System.out.println("登陆成功");
 		}
 		else{
 			req.getRequestDispatcher("login.jsp?status=1").forward(req, resp);
@@ -132,7 +134,7 @@ public class UserServlet extends HttpServlet {
 			return ;
 		}
 		File file = new File(Constants.PIC_UPLOAD_PATH+DateUtil.getDateStr());
-		System.out.println(Constants.PIC_UPLOAD_PATH+DateUtil.getDateStr());
+//		System.out.println(Constants.PIC_UPLOAD_PATH+DateUtil.getDateStr());
 		
 		file.mkdirs();
 		File uploadFile = new File(Constants.PIC_UPLOAD_PATH+DateUtil.getDateStr()+"/"+DateUtil.getTimeStr()+"."+filename);

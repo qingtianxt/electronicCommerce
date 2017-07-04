@@ -20,6 +20,40 @@ import com.oracle.jsp.util.DBUtil;
 public class ProductDao {
 
 	/**
+	 * 查询搜索匹配的所有商品
+	 * 
+	 * @param key
+	 * @return
+	 */
+	public List<ProductBean> getLists(String key) {
+		// TODO Auto-generated method stub
+		String sql = "select * from product where name LIKE'%" + key + "%'";
+		List<ProductBean> list = new ArrayList<>();
+		Connection conn = DBUtil.getConn();
+		Statement state = null;
+		ResultSet rs = null;
+		try {
+			state = conn.createStatement();
+			rs = state.executeQuery(sql);
+			ProductBean productBean = null;
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				float price = rs.getFloat("price");
+				int number = rs.getInt("number");
+				String pic = rs.getString("pic");
+				productBean = new ProductBean(id, name, price, number, pic);
+				list.add(productBean);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DBUtil.close(rs, state, conn);
+		}
+		return list;
+	}
+
+	/**
 	 * 删除商品
 	 * 
 	 * @param id
@@ -186,7 +220,7 @@ public class ProductDao {
 	}
 
 	/**
-	 * 分类列表，搜索出所选择分类及其所有子类的所有的商品列表。
+	 * 分类列表，搜索出所选择分类及其子类的所有的商品列表。
 	 * 
 	 * @param parent_id
 	 * @return
@@ -202,7 +236,7 @@ public class ProductDao {
 		Connection conn = DBUtil.getConn();
 		Statement state = null;
 		ResultSet rs = null;
-		String sql = "select * from product whereproduct_type_id='" + type_id + "'";
+		String sql = "select * from product where product_type_id='" + type_id + "'";
 		try {
 			state = conn.createStatement();
 			rs = state.executeQuery(sql);
