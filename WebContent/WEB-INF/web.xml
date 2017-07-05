@@ -139,4 +139,15 @@
     <servlet-name>wzw_userServlet</servlet-name>
     <url-pattern>/admin/wzw_userinfo/wzw_userServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>wzw_InitServlet</display-name>
+    <servlet-name>wzw_InitServlet</servlet-name>
+    <servlet-class>wzw_user.wzw_InitServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>wzw_InitServlet</servlet-name>
+    <url-pattern>/admin/wzw_userinfo/wzw_InitServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

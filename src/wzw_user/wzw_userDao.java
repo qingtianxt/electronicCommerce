@@ -52,12 +52,12 @@ public class wzw_userDao {
  * @param password
  * @return
  */
-	public boolean update(String id, String phone, String nickname, String password) {
+	public boolean update(userBean userbean) {
 		Connection conn =  DBUtil.getConn();
 		Statement state = null;
 		boolean flag= true;
 		int i=0;
-		String sql = "update user set username='"+phone+"',password='"+password+"',nickname='"+nickname+"' where id='"+id+"'";
+		String sql = "update user set username='"+userbean.getUsername()+"',password='"+userbean.getPassword()+"',nickname='"+userbean.getNickname()+"' where id='"+userbean.getId()+"'";
 		
 		try {
 			state = conn.createStatement();
@@ -73,12 +73,18 @@ public class wzw_userDao {
 		}
 		return flag;
 	}
-	public boolean updatepic(String path,String id) {
+	/**
+	 * 更改头像
+	 * @param path
+	 * @param id
+	 * @return
+	 */
+	public boolean updatepic(String path,userBean userbean) {
 		Connection conn =  DBUtil.getConn();
 		Statement state = null;
 		boolean flag= true;
 		int i=0;
-		String sql = "update user set pic='"+path+"' where id='"+id+"'";
+		String sql = "update user set pic='"+path+"' where id='"+userbean.getId()+"'";
 		
 		try {
 			state = conn.createStatement();
@@ -93,6 +99,40 @@ public class wzw_userDao {
 			flag=false;
 		}
 		return flag;
+	}
+	/**
+	 * 通过id获取
+	 * @param id
+	 * @return
+	 */
+	public userBean getUserbyId(String id) {
+		
+		Connection conn = DBUtil.getConn();
+		userBean userBean = null;
+		Statement state = null;
+		ResultSet rs = null;
+		userBean = new userBean();
+		try {
+			state = conn.createStatement();
+			
+			rs = state.executeQuery("select id,username,password,salt,nickname,truename,sex,pic,status,create_date from user where id='" + id + "'");
+			while(rs.next()) {
+					userBean.setId(rs.getInt("id"));
+					userBean.setUsername(rs.getString("username"));
+					userBean.setPassword(rs.getString("password"));
+					userBean.setSalt(rs.getString("salt"));
+					userBean.setNickname(rs.getString("nickname"));
+					userBean.setTruename(rs.getString("truename"));
+					userBean.setSex(rs.getInt("sex"));
+					userBean.setPic(rs.getString("pic"));
+					userBean.setStatus(rs.getInt("status"));
+					userBean.setCreateDate(rs.getString("create_date"));
+				}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		DBUtil.close(rs, state, conn);
+		return userBean;
 	}
 	
 }
